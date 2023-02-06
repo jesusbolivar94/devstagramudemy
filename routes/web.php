@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -57,4 +58,9 @@ Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.sto
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store')
     ->middleware('auth');
 Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy')
+    ->middleware('auth');
+
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow')
+    ->middleware('auth');
+Route::delete('/{user:username}/follow', [FollowerController::class, 'destroy'])->name('users.unfollow')
     ->middleware('auth');
