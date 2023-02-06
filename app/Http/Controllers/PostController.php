@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         return view('dashboard', [
             'user' => $user,
-            'posts' => $user->posts()->paginate(8)
+            'posts' => $user->posts()->latest()->paginate(8)
         ]);
     }
 
